@@ -1,46 +1,34 @@
-# Astro Starter Kit: Basics
+<div align="center" style="background-color: #002635; color: white; padding: 2rem; font-family: 'Segoe UI', sans-serif; line-height: 1.6;">
+<main style="color: ffff; text-align:center; font-size:24px; font-weight: bold; padding: 10px; background-color:#001F38; border-radius:8px;">🛍️ My Store </main>
 
-```sh
-pnpm create astro@latest -- --template basics
-```
+<article style="display:flex; flex-direction :column; justify-content: center;">
+<hr style="margin: 2rem 0; border-color: #3366cc;" />
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+# 🚀 Tecnologías Utilizadas: #
 
-## 🚀 Project Structure
+<ul style="padding-left: 1.5rem; text-align:left;">
+  <li>Astro</li>
+  <li>Tailwind CSS</li>
+  <li>HTML</li>
+  <li>CSS</li>
+  <li>JavaScript</li>
+</ul>
 
-Inside of your Astro project, you'll see the following folders and files:
+</article>
 
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
-```
+## Vista Previa:
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+<p style="color:gray; opacity: 0.7; text-align:center;">Próximamente.</p>
 
-## 🧞 Commands
+---
 
-All commands are run from the root of the project, from a terminal:
+## Licencia :
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `pnpm install`             | Installs dependencies                            |
-| `pnpm dev`             | Starts local dev server at `localhost:4321`      |
-| `pnpm build`           | Build your production site to `./dist/`          |
-| `pnpm preview`         | Preview your build locally, before deploying     |
-| `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `pnpm astro -- --help` | Get help using the Astro CLI                     |
+Este proyecto está licenciado bajo **Creative Commons BY-NC-ND 4.0**.
+Puedes compartir este proyecto con atribución, pero no puedes usarlo con fines comerciales ni modificarlo para redistribuirlo.
 
-## 👀 Want to learn more?
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+## 👤 Autor: **Emilio**
+📩 Contacto: [Email](mailto:kei.hexcode@gmail.com)
+
+</div>
