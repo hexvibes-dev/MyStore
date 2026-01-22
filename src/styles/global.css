@@ -1,2 +1,11 @@
 @import "tailwindcss";
 @import "animate.css";
+
+@theme{
+  --color-cool-gray: #959BB5;
+  --color-mirage: #0A1123;
+  --color-deep-koamaru: #3A3E6D;
+  --color-ship-cove: #8387C4;
+  
+  --shadow-rod: 0 0 25px rgba(58, 62, 109,0.9);
+}

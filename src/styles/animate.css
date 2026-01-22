@@ -1,16 +1,18 @@
-
-.animate__wobble {
-  --animate-duration: 3s;
+.hover-btn:hover{
+  transform: scale(1.1);
 }
-.animate__saludo {
-  animation: saludo 0.8s,
-             zoomOutLeft 2s infinite 0.8s alternate
+.animate__reveal{
+  animation: reveal both;
+  animation-timeline: view();
+  animation-range: entry 20% cover 30%;
 }
-
-@keyframes saludo {
-  0%   { transform: rotate(0deg); }
-  25%  { transform: rotate(20deg); }
-  50%  { transform: rotate(-20deg); }
-  75%  { transform: rotate(20deg); }
-  100% { transform: rotate(0deg); }
+@keyframes reveal {
+  0%{
+    opacity: 0;
+    transform: translateY(70px);
+  }
+  100%{
+    opacity: 100%;
+    transform: translateY(0);
+  }
 }
