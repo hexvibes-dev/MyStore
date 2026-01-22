@@ -1,8 +1,3 @@
-// public/js/productos.js
-// Script cliente para renderizar productos y controlar modal full-screen.
-// Incluye centrado de la imagen, animaciones, swipe y safe-area en el footer.
-// Ahora el footer se levanta 60px con padding extra.
-
 (function () {
   function init() {
     const modal = document.getElementById('modal');
@@ -26,7 +21,6 @@
       return '/' + src;
     }
 
-    // Centrar y escalar imagen dentro de la zona
     function centrarImagen() {
       if (!modalImg || !imageZone) return;
       const zoneHeight = imageZone.clientHeight;
@@ -35,7 +29,7 @@
       const iw = modalImg.naturalWidth;
       if (!ih || !iw) return;
 
-      const scale = Math.min(zoneWidth / iw, zoneHeight / ih) * 0.9; // 90% del espacio
+      const scale = Math.min(zoneWidth / iw, zoneHeight / ih) * 0.9;
       const finalW = iw * scale;
       const finalH = ih * scale;
 
@@ -57,9 +51,8 @@
       modalImg.addEventListener('load', centrarImagen, { once: true });
       window.addEventListener('resize', centrarImagen);
 
-      // Levantar footer 60px
       if (footerZone) {
-        footerZone.style.paddingBottom = '60px';
+        footerZone.style.paddingBottom = '20px';
       }
 
       modalContent.style.animation = 'scaleIn 0.3s ease forwards';
@@ -75,7 +68,6 @@
         modalImg.removeAttribute('style');
         window.removeEventListener('resize', centrarImagen);
 
-        // Reset padding
         if (footerZone) {
           footerZone.style.paddingBottom = '';
         }
@@ -84,7 +76,6 @@
 
     window.cerrarModal = cerrarModal;
 
-    // Animación al cambiar imagen
     function cambiarImagen(index) {
       currentIndex = (index + currentImages.length) % currentImages.length;
       modalImg.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
@@ -101,7 +92,6 @@
     prevBtn?.addEventListener('click', () => cambiarImagen(currentIndex - 1));
     nextBtn?.addEventListener('click', () => cambiarImagen(currentIndex + 1));
 
-    // Swipe en móviles (sobre la zona de imagen)
     if (imageZone) {
       let startX = 0;
       imageZone.addEventListener('touchstart', (e) => {
@@ -118,7 +108,6 @@
       }, { passive: true });
     }
 
-    // Render productos
     const PRODUCTS_JSON_PATH = '/productos/productos.json';
     function renderProductos(productos) {
       const contenedor = document.getElementById('contenedor-productos');
@@ -128,22 +117,22 @@
 
       productos.forEach(producto => {
         const div = document.createElement('div');
-        div.className = 'producto bg-white rounded-lg shadow p-3 w-56 flex flex-col items-start';
+        div.className = 'producto animate__aninated animate__reveal bg-white/80 rounded-lg shadow p-4 w-72 md:w-80 lg:w-96 flex flex-col items-start transform transition duration-300 hover:scale-105 hover:shadow-lg overflow-hidden';
 
         const galeriaHtml = (producto.imagenes || []).map((img, i) => {
           const src = normalizePath(img);
-          return `<div class="imagen-wrapper flex-none min-w-[100px] h-[100px] bg-gray-100 rounded-md overflow-hidden cursor-pointer mr-2">
+          return `<div class="imagen-wrapper flex-none min-w-[120px] h-[120px] max-h-[140px] bg-gray-100 rounded-md overflow-hidden cursor-pointer mr-2">
                     <img src="${src}" alt="${producto.nombre}" class="w-full h-full object-cover block" loading="lazy">
                   </div>`;
         }).join('');
 
         div.innerHTML = `
           <div class="galeria flex gap-2 overflow-x-auto pb-2 -mx-1">${galeriaHtml}</div>
-          <h2 class="mt-2 text-sm font-semibold">${producto.nombre}</h2>
-          <p class="text-gray-700 text-sm">${producto.descripcion || ''}</p>
-          <p class="mt-2 font-medium text-emerald-600">$${Number(producto.precio || 0).toFixed(2)}</p>
+          <h2 class="mt-2 text-deep-koamaru font-semibold break-words">${producto.nombre}</h2>
+          <p class="text-gray-600 text-sm max-h-32 overflow-y-auto break-words whitespace-pre-wrap">${producto.descripcion || ''}</p>
+          <p class="mt-2 font-bold text-emerald-600">$${Number(producto.precio || 0).toFixed(2)}</p>
           <div class="mt-3 w-full">
-            <a class="comprar-btn inline-block bg-emerald-500 text-white px-3 py-1 rounded-md font-semibold" href="https://wa.me/5353375206?text=Hola%2C%20quiero%20comprar%20el%20producto%20${encodeURIComponent(producto.nombre)}" target="_blank" rel="noopener noreferrer">Comprar</a>
+            <a class="comprar-btn inline-block bg-deep-koamaru transition-all hover-btn text-white px-4 py-2 rounded-l-full rounded-r-full font-semibold href="https://wa.me/53375206?text=Hola%2C%20quiero%20comprar%20el%20producto%20${encodeURIComponent(producto.nombre)}" target="_blank" rel="noopener noreferrer">Comprar</a>
           </div>
         `;
 
