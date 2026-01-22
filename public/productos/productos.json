@@ -1,0 +1,29 @@
+[
+  {
+    "nombre": "Camiseta blanca",
+    "precio": 12.99,
+    "descripcion": "Camiseta de algodón suave, ideal para el verano.",
+    "imagenes": [
+      "/img/productos/camisa-blanca.jpg",
+      "/img/productos/prueba.jpg"
+    ]
+  },
+  {
+    "nombre": "Gorra negra",
+    "precio": 8.5,
+    "descripcion": "Gorra ajustable con visera curva y diseño clásico.",
+    "imagenes": [
+      "/img/productos/gorra-negra.webp",
+      "/img/productos/gorra-negra.webp"
+    ]
+  },
+  {
+    "nombre": "Prueba",
+    "precio": 10,
+    "descripcion": "Producto de prueba para testear la galería.",
+    "imagenes": [
+      "/img/productos/prueba.jpg",
+      "/img/productos/prueba.jpg"
+    ]
+  }
+]
