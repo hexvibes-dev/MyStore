@@ -1,6 +1,7 @@
 // public/js/productos.js
 // Script cliente para renderizar productos y controlar modal full-screen.
-// Incluye centrado de la imagen, animaciones y swipe.
+// Incluye centrado de la imagen, animaciones, swipe y safe-area en el footer.
+// Ahora el footer se levanta 60px con padding extra.
 
 (function () {
   function init() {
@@ -11,6 +12,7 @@
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
     const imageZone = document.getElementById('imageZone');
+    const footerZone = document.getElementById('footerZone');
 
     let currentImages = [];
     let currentIndex = 0;
@@ -55,6 +57,11 @@
       modalImg.addEventListener('load', centrarImagen, { once: true });
       window.addEventListener('resize', centrarImagen);
 
+      // Levantar footer 60px
+      if (footerZone) {
+        footerZone.style.paddingBottom = '60px';
+      }
+
       modalContent.style.animation = 'scaleIn 0.3s ease forwards';
     }
 
@@ -67,6 +74,11 @@
         modalImg.src = '';
         modalImg.removeAttribute('style');
         window.removeEventListener('resize', centrarImagen);
+
+        // Reset padding
+        if (footerZone) {
+          footerZone.style.paddingBottom = '';
+        }
       }, 250);
     }
 
