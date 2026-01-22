@@ -2,7 +2,7 @@
   {
     "nombre": "Camiseta blanca",
     "precio": 12.99,
-    "descripcion": "Camiseta de algodón suave, ideal para el verano.",
+    "descripcion": "Camiseta de algodón suave,\nideal para el verano.\nPerfecta para combinar con jeans o shorts.\nDiseñada para brindar comodidad durante todo el día.\nDisponible en varias tallas y colores.",
     "imagenes": [
       "/img/productos/camisa-blanca.jpg",
       "/img/productos/prueba.jpg"
@@ -11,7 +11,7 @@
   {
     "nombre": "Gorra negra",
     "precio": 8.5,
-    "descripcion": "Gorra ajustable con visera curva y diseño clásico.",
+    "descripcion": "Gorra ajustable con visera curva,\ndiseño clásico y versátil.\nFabricada con materiales resistentes.\nIdeal para protegerte del sol y complementar tu estilo urbano.\nSe adapta a diferentes tamaños de cabeza.",
     "imagenes": [
       "/img/productos/gorra-negra.webp",
       "/img/productos/gorra-negra.webp"
@@ -20,7 +20,7 @@
   {
     "nombre": "Prueba",
     "precio": 10,
-    "descripcion": "Producto de prueba para testear la galería.",
+    "descripcion": "Producto de prueba para testear la galería.\nEste artículo se utiliza para verificar\nel correcto funcionamiento de la interfaz,\nlos estilos aplicados y la visualización de imágenes.\nNo está disponible para la venta.",
     "imagenes": [
       "/img/productos/prueba.jpg",
       "/img/productos/prueba.jpg"
