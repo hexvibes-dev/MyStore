@@ -1,0 +1,51 @@
+---
+// Componente que muestra la lista de productos y la modal.
+// Usa Tailwind y centrado por JavaScript.
+---
+<section class="px-4 py-8 bg-gray-50 min-h-screen">
+  <h1 class="text-center text-2xl font-bold mb-6">Productos disponibles</h1>
+
+  <div id="contenedor-productos" class="flex flex-wrap gap-5 justify-center"></div>
+
+  <dialog id="modal" class="hidden">
+    <div id="modalOverlay" class="fixed inset-0 bg-black/50 backdrop-blur-sm"></div>
+
+    <div id="modalContent" class="relative flex flex-col h-[90vh] w-screen max-w-screen animate-scaleIn">
+      <!-- Zona de imagen -->
+      <div id="imageZone" class="flex-grow relative flex items-center justify-center overflow-hidden">
+        <img id="modal-img" src="" alt="Producto ampliado"
+             class="block object-contain mx-auto transition-all duration-300 ease-in-out" />
+      </div>
+
+      <!-- Zona de botones -->
+      <div id="footerZone" class="flex items-center justify-center gap-4 min-h-[60px]">
+        <button id="prevBtn" class="w-10 h-10 rounded-full bg-black/50 text-white hover:bg-black/70 transition-transform duration-300">&larr;</button>
+        <button class="cerrar-btn bg-gray-800 text-white px-4 py-2 rounded-md transition-colors duration-300 hover:bg-gray-600" onclick="cerrarModal()">Cerrar</button>
+        <button id="nextBtn" class="w-10 h-10 rounded-full bg-black/50 text-white hover:bg-black/70 transition-transform duration-300">&rarr;</button>
+      </div>
+    </div>
+  </dialog>
+
+  <style>
+    @keyframes scaleIn {
+      0% { transform: scale(0.9); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    @keyframes scaleOut {
+      0% { transform: scale(1); opacity: 1; }
+      100% { transform: scale(0.9); opacity: 0; }
+    }
+    .animate-scaleIn { animation: scaleIn 0.3s ease forwards; }
+    dialog[open] {
+      display: flex;
+      position: fixed;
+      inset: 0;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+      background: transparent;
+    }
+  </style>
+
+  <script type="module" src="/js/productos.js" defer></script>
+</section>
