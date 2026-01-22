@@ -1,11 +1,19 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Topbar from '../components/Topbar.astro';
+import Header from '../components/Header.astro';
+import DealsRow from '../components/DealsRow.astro';
+import BentoGrid from '../components/BentoGrid.astro';
+import CategoriesRow from '../components/CategoriesRow.astro';
+import Footer from '../components/Footer.astro';
 ---
-
 <Layout>
-	<Welcome />
+  <Topbar />
+  <Header />
+  <main class="container" id="mainContent" aria-hidden="true">
+    <DealsRow />
+    <BentoGrid />
+    <CategoriesRow />
+  </main>
+  <Footer />
 </Layout>
