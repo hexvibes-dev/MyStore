@@ -13,7 +13,7 @@ window.addEventListener('load', () => {
         if (mainContent) mainContent.setAttribute('aria-hidden', 'false');
 
         document.querySelectorAll('.topbar, .section h3, .product, .bento-card, footer')
-          .forEach(el => el.classList.add('animate__animated', 'animate__fadeInUp'));
+          .forEach(el => el.classList.add('animate__animated', 'animate__fadeInUp', 'animate__slow'));
 
         initCarousel();
         initMenuPopup();
