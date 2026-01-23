@@ -13,7 +13,7 @@ window.addEventListener('load', () => {
         if (mainContent) mainContent.setAttribute('aria-hidden', 'false');
 
         document.querySelectorAll('.topbar, .section h3, .product, .bento-card, footer')
-          .forEach(el => el.classList.add('animate__animated', 'animate__fadeInUp', 'animate__slow'));
+          .forEach(el => el.classList.add('animate__animated', 'animate__fadeInUp'));
 
         initCarousel();
         initMenuPopup();
@@ -22,5 +22,5 @@ window.addEventListener('load', () => {
       initCarousel();
       initMenuPopup();
     }
-  }, 600);
+  }, 900);
 });

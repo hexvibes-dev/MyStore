@@ -6,6 +6,23 @@
   animation-timeline: view();
   animation-range: entry 20% cover 30%;
 }
+.aninate__fadeInUp2{
+  animation: fadeInUp2 10s linear;
+}
+@keyframes fadeInUp2 {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  60% {
+    opacity: 0.6;
+    transform: translateY(15px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 @keyframes reveal {
   0%{
     opacity: 0;

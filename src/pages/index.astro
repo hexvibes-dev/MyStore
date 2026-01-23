@@ -2,18 +2,14 @@
 import Layout from '../layouts/Layout.astro';
 import Topbar from '../components/Topbar.astro';
 import Header from '../components/Header.astro';
-import DealsRow from '../components/DealsRow.astro';
 import Page from '../components/Page.astro';
-import CategoriesRow from '../components/CategoriesRow.astro';
 import Footer from '../components/Footer.astro';
 ---
 <Layout>
   <Topbar />
   <Header />
   <main class="container" id="mainContent" aria-hidden="true">
-    <DealsRow />
     <Page />
-    <CategoriesRow />
   </main>
   <Footer />
 </Layout>
