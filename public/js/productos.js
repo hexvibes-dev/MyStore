@@ -1,4 +1,6 @@
 (function () {
+  const PRODUCTS_JSON_PATH = '/productos/productos.json';
+
   function init() {
     const modal = document.getElementById('modal');
     const modalImg = document.getElementById('modal-img');
@@ -12,6 +14,9 @@
     let currentImages = [];
     let currentIndex = 0;
 
+    /* -------------------------
+       Utilidades
+    ------------------------- */
     function normalizePath(src) {
       if (!src || typeof src !== 'string') return src;
       src = src.trim();
@@ -21,6 +26,13 @@
       return '/' + src;
     }
 
+    function safeText(text) {
+      return String(text ?? '');
+    }
+
+    /* -------------------------
+       Modal / galería
+    ------------------------- */
     function centrarImagen() {
       if (!modalImg || !imageZone) return;
       const zoneHeight = imageZone.clientHeight;
@@ -55,17 +67,19 @@
         footerZone.style.paddingBottom = '20px';
       }
 
-      modalContent.style.animation = 'scaleIn 0.3s ease forwards';
+      if (modalContent) modalContent.style.animation = 'scaleIn 0.3s ease forwards';
     }
 
     function cerrarModal() {
-      modalContent.style.animation = 'scaleOut 0.25s ease forwards';
+      if (modalContent) modalContent.style.animation = 'scaleOut 0.25s ease forwards';
       setTimeout(() => {
-        modal.classList.add('hidden');
-        modal.removeAttribute('open');
+        if (modal) modal.classList.add('hidden');
+        if (modal) modal.removeAttribute('open');
         document.body.style.overflow = '';
-        modalImg.src = '';
-        modalImg.removeAttribute('style');
+        if (modalImg) {
+          modalImg.src = '';
+          modalImg.removeAttribute('style');
+        }
         window.removeEventListener('resize', centrarImagen);
 
         if (footerZone) {
@@ -77,6 +91,7 @@
     window.cerrarModal = cerrarModal;
 
     function cambiarImagen(index) {
+      if (!modalImg) return;
       currentIndex = (index + currentImages.length) % currentImages.length;
       modalImg.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
       modalImg.style.opacity = '0';
@@ -108,7 +123,13 @@
       }, { passive: true });
     }
 
-    const PRODUCTS_JSON_PATH = '/productos/productos.json';
+    if (modalOverlay) {
+      modalOverlay.addEventListener('click', cerrarModal);
+    }
+
+    /* -------------------------
+       Renderizado de productos
+    ------------------------- */
     function renderProductos(productos) {
       const contenedor = document.getElementById('contenedor-productos');
       if (!contenedor) return;
@@ -117,27 +138,40 @@
 
       productos.forEach(producto => {
         const div = document.createElement('div');
-        div.className = 'producto animate__aninated animate__reveal bg-white/90 rounded-lg shadow p-4 w-72 md:w-80 lg:w-96 flex flex-col items-start transform transition duration-300 hover:scale-105 hover:shadow-lg overflow-hidden';
+        let clases = 'producto animate__animated animate__reveal bg-white/90 rounded-lg shadow p-4 w-72 md:w-80 lg:w-96 flex flex-col items-start transform transition duration-300 hover:scale-105 hover:shadow-lg overflow-hidden';
+        if (producto.categoria) {
+          const cats = Array.isArray(producto.categoria) ? producto.categoria : [producto.categoria];
+          cats.forEach(cat => {
+            if (cat && typeof cat === 'string') {
+              const safeCat = cat.toLowerCase().trim().replace(/\s+/g, '-').replace(/[^a-z0-9-_]/g, '');
+              if (safeCat) clases += ' categoria-' + safeCat;
+            }
+          });
+        }
+        div.className = clases;
 
         const galeriaHtml = (producto.imagenes || []).map((img, i) => {
           const src = normalizePath(img);
           return `<div class="imagen-wrapper flex-none min-w-[120px] h-[120px] max-h-[140px] bg-gray-100 rounded-md overflow-hidden cursor-pointer mr-2">
-                    <img src="${src}" alt="${producto.nombre}" class="w-full h-full object-cover block" loading="lazy">
+                    <img src="${src}" alt="${safeText(producto.nombre)}" class="w-full h-full object-cover block" loading="lazy">
                   </div>`;
         }).join('');
+        const waText = encodeURIComponent(`Hola, quiero comprar el producto ${safeText(producto.nombre)}`);
+        const waHref = `https://wa.me/53375206?text=${waText}`;
 
         div.innerHTML = `
           <div class="galeria flex gap-2 overflow-x-auto pb-2 -mx-1">${galeriaHtml}</div>
-          <h2 class="mt-2 text-watermeleon bg-watermeleon-shadow rounded-l-full rounded-r-full px-3 font-semibold break-words">${producto.nombre}</h2>
-          <p class="text-gray-600 text-sm max-h-32 overflow-y-auto break-words whitespace-pre-wrap bg-trasparent border-l border-l-watermeleon px-3">${producto.descripcion || ''}</p>
-          <p class="mt-2 font-bold text-emerald-600">$${Number(producto.precio || 0).toFixed(2)}</p>
+          <h2 class="mt-2 text-watermeleon bg-watermeleon-shadow rounded-l-full rounded-r-full px-3 font-semibold break-words">${safeText(producto.nombre)}</h2>
+          <p class="text-gray-600 text-sm max-h-32 overflow-y-auto break-words whitespace-pre-wrap bg-trasparent border-l border-l-watermeleon px-3">${safeText(producto.descripcion || '')}</p>
+          <span class="mt-2 font-bold text-emerald-600">$${Number(producto.precio || 0).toFixed(2)}</span>
           <div class="mt-3 w-full">
-            <a class="comprar-btn inline-block bg-watermeleon transition-all hover-btn text-white px-4 py-2 rounded-l-full rounded-r-full font-semibold href="https://wa.me/53375206?text=Hola%2C%20quiero%20comprar%20el%20producto%20${encodeURIComponent(producto.nombre)}" target="_blank" rel="noopener noreferrer">Comprar</a>
+            <a class="comprar-btn inline-block bg-watermeleon transition-all hover-btn text-white px-4 py-2 rounded-l-full rounded-r-full font-semibold" href="${waHref}" target="_blank" rel="noopener noreferrer">Comprar</a>
           </div>
         `;
 
         fragment.appendChild(div);
 
+        // Añadimos listeners a las miniaturas
         const wrappers = div.querySelectorAll('.imagen-wrapper');
         wrappers.forEach((wrapper, i) => {
           wrapper.addEventListener('click', () => {
@@ -150,12 +184,73 @@
       contenedor.appendChild(fragment);
     }
 
+    /* -------------------------
+       Filtrado: obtener categoría
+       - Primero: data-categoria en el contenedor
+       - Segundo: ?categoria=... en querystring
+       - Tercero: extraer último segmento de la ruta (ej. /productos/ropa)
+       - Por defecto: 'all'
+    ------------------------- */
+    function getCategoriaFromPage() {
+      const contenedor = document.getElementById('contenedor-productos');
+      if (contenedor && contenedor.dataset && contenedor.dataset.categoria) {
+        return contenedor.dataset.categoria;
+      }
+
+      // Query string ?categoria=ropa
+      try {
+        const params = new URLSearchParams(window.location.search);
+        const q = params.get('categoria');
+        if (q) return q;
+      } catch (e) { /* ignore */ }
+
+      // Extraer último segmento de la ruta (sin extensión .html)
+      const path = window.location.pathname || '';
+      const parts = path.split('/').filter(Boolean);
+      if (parts.length) {
+        const last = parts[parts.length - 1];
+        // si tiene extensión .html la quitamos
+        const clean = last.replace(/\.html$/i, '');
+        // si la ruta es la raíz o index, devolvemos 'all'
+        if (clean && !/^(index|\/)$/.test(clean)) return clean;
+      }
+
+      return 'all';
+    }
+
+    /* -------------------------
+       Carga y filtrado de productos
+    ------------------------- */
     fetch(PRODUCTS_JSON_PATH)
-      .then(res => res.ok ? res.json() : Promise.reject(res.status))
-      .then(renderProductos)
-      .catch(err => console.error('Error al cargar productos:', err));
+      .then(res => {
+        if (!res.ok) return Promise.reject(new Error('HTTP ' + res.status));
+        return res.json();
+      })
+      .then(data => {
+        const categoria = getCategoriaFromPage();
+        let filtrados = data;
+
+        if (categoria && categoria !== 'all') {
+          filtrados = data.filter(p => {
+            // soporta que categoria en JSON sea string o array
+            const cat = p.categoria;
+            if (!cat) return false;
+            if (Array.isArray(cat)) return cat.includes(categoria);
+            return String(cat).toLowerCase() === String(categoria).toLowerCase();
+          });
+        }
+
+        renderProductos(filtrados);
+      })
+      .catch(err => {
+        console.error('Error al cargar productos:', err);
+        // opcional: mostrar mensaje en el contenedor
+        const contenedor = document.getElementById('contenedor-productos');
+        if (contenedor) contenedor.innerHTML = '<p class="text-red-500">No se pudieron cargar los productos.</p>';
+      });
   }
 
+  // Inicialización cuando el DOM esté listo
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
   } else {

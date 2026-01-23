@@ -1,0 +1,103 @@
+---
+const { categoria = 'belleza', titulo = 'Productos disponibles🔶' } = Astro.props;
+---
+
+<article class="grid place-content-center w-[100vw] h-auto p-12 bg-transparent mt-5">
+  <section class="px-8 py-12 bg-gradient-to-br from-cherry via-pink-100 to-cherry min-h-screen rounded-xl shadow-md min-w-[95vw] md:max-w-[85vw]">
+    <h1 class="text-pink/80 text-center text-4xl font-semibold max-[500px]:text-2xl mb-8 animate__animated animate__fadeIn">
+      {titulo}
+    </h1>
+
+    <div 
+      id="contenedor-productos" 
+      data-categoria={categoria} 
+      class="grid gap-6 justify-center md:grid-cols-3"
+    ></div>
+
+    <dialog id="modal" class="hidden">
+      <div id="modalOverlay" class="fixed inset-0 bg-transparent backdrop-blur-sm"></div>
+
+      <div id="modalContent" class="relative flex flex-col h-[85vh] w-screen max-w-screen-md animate-scaleIn bg-transparent">
+        <div id="imageZone" class="flex-grow relative flex items-center justify-center overflow-hidden p-6">
+          <img
+            id="modal-img"
+            src=""
+            alt="Producto ampliado"
+            class="block object-contain mx-auto transition-all duration-300 ease-in-out rounded-md"
+          />
+        </div>
+
+        <div
+          id="footerZone"
+          class="flex items-center justify-center gap-4 min-h-[60px] pb-[env(safe-area-inset-bottom)]"
+        >
+          <button
+            id="prevBtn"
+            class="w-10 h-10 rounded-full bg-pink-300 text-pink-800 hover:bg-pink-400 transition-transform duration-300"
+          >
+            &larr;
+          </button>
+          <button
+            class="cerrar-btn bg-pink-600 text-white px-5 py-2 rounded-md transition-colors duration-300 hover:bg-pink-500"
+            onclick="cerrarModal()"
+          >
+            Cerrar
+          </button>
+          <button
+            id="nextBtn"
+            class="w-10 h-10 rounded-full bg-pink-300 text-pink-800 hover:bg-pink-400 transition-transform duration-300"
+          >
+            &rarr;
+          </button>
+        </div>
+      </div>
+    </dialog>
+  </section>
+</article>
+
+<style is:global>
+  body {
+    background: var(--azalea);
+    font-family: 'Inter', sans-serif;
+    color: #444;
+  }
+
+  .categoria-belleza {
+    background: #f8bbd0; 
+    border-radius: 12px;
+    padding: 1rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  }
+
+  .categoria-belleza > h2 {
+    color: var(--pink); 
+    background-color: var(--pink-shadow);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+
+  .categoria-belleza > p {
+    color: #5c5c5c;
+  }
+
+  .categoria-belleza > span {
+    color: var(--pink);
+    background-color: var(--pink-shadow);
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+  }
+
+  .categoria-belleza > div > a {
+    background-color: #ec407a;
+    color: white;
+    padding: 6px 14px;
+    border-radius: 6px;
+    transition: background-color 0.3s ease;
+    font-weight: 500;
+  }
+
+  .categoria-belleza > div > a:hover {
+    background-color: #d81b60; 
+  }
+</style>

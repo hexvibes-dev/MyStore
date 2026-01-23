@@ -4,12 +4,23 @@ import Topbar from '../components/Topbar.astro';
 import Header from '../components/Header.astro';
 import Page from '../components/Page.astro';
 import Footer from '../components/Footer.astro';
+import Navigation from '../components/Navigation.astro';
+
+const slides = [
+  { src: "/img/bg1.webp", alt: "background" },
+  { src: "/img/bg2.webp", alt: "background", label: "Cosméticos", labelClass: "bg-watermeleon-extra-shadow text-white/70" },
+  { src: "/img/bg3.webp", alt: "background", label: "Ofertas", labelClass: "bg-watermeleon-shadow text-watermeleon" },
+  { src: "/img/bg4.webp", alt: "background", label: "Productos exclusivos", labelClass: "bg-transparent text-watermeleon" },
+  { src: "/img/bg5.webp", alt: "background" }
+];
 ---
+
 <Layout>
   <Topbar />
-  <Header />
+  <Header slides={slides} />
+  <Navigation />
   <main class="container" id="mainContent" aria-hidden="true">
-    <Page />
+    <Page titulo="Productos disponibles🔶"/>
   </main>
   <Footer />
 </Layout>

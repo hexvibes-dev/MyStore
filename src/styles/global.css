@@ -2,10 +2,13 @@
 @import "animate.css";
 
 @theme{
+  /* dark */
   --color-cool-gray: #959BB5;
   --color-mirage: #0A1123;
   --color-deep-koamaru: #3A3E6D;
   --color-ship-cove: #8387C4;
+  
+  /*Principal*/
   --color-sky-blue : rgb(0, 162, 216);
   --color-pale-sky : rgb(107, 114, 128);
   --color-tangaroa : rgb(7, 16, 41);
@@ -13,6 +16,14 @@
   --color-watermeleon-shadow : rgba(255, 107, 129,0.5) ;
   --color-watermeleon-extra-shadow : rgba(255, 107, 129,0.7) ;
   --color-fiord : rgb(71, 85, 105);
+  
+  /* Rosa */
+  --color-remy: rgb(255, 232, 238);
+  --color-azalea: rgb(255, 201, 215) ;
+  --color-cherry: rgb(255, 188, 205) ;
+  --color-baker: rgb(254, 156, 181) ;
+  --color-pink: rgb(252, 129, 160) ;
+  
   
   /* Shadows; */
   --shadow-rod: 0 0 25px rgba(58, 62, 109,0.9);
@@ -24,3 +35,46 @@
   font-style: normal;
   font-display: swap;
 }
+
+  @keyframes scaleIn {
+        0% {
+          transform: scale(0.9);
+          opacity: 0;
+        }
+        100% {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+  @keyframes scaleOut {
+    0% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(0.9);
+      opacity: 0;
+    }
+  }
+  .animate-scaleIn {
+    animation: scaleIn 0.3s ease forwards;
+  }
+  
+  :root{
+  --remy: rgb(255, 232, 238);
+  --azalea: rgb(255, 201, 215) ;
+  --cherry: rgb(255, 188, 205) ;
+  --baker: rgb(254, 156, 181) ;
+  --pink: rgb(252, 129, 160) ;
+  --pink-shadow: rgba(252,129,160,0.4);
+  }    
+      
+  dialog[open] {
+    display: flex;
+    position: fixed;
+    inset: 0;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+    background: transparent;
+    }

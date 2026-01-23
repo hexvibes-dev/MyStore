@@ -1,50 +1,32 @@
+---
+const { slides } = Astro.props;
+---
+
 <header class="relative w-full h-56 md:h-64 overflow-hidden border-b border-white/10 animate__animated animate__fadeInDown animate__delay-1s" aria-label="Carrusel principal">
   <div class="w-full h-full overflow-hidden relative">
     <div id="carouselTrack" class="flex h-full will-change-transform touch-pan-y" aria-hidden="false">
       
-      <div class="min-w-full h-full relative select-none flex items-center justify-center">
-        <img src="/img/bg1.webp" alt="background"
-             class="w-full h-full object-cover sm:w-full sm:h-full sm:object-cover md:w-auto md:h-auto md:max-h-[250px] md:object-contain md:mx-auto">
-      </div>
-
-      
-      <div class="min-w-full h-full relative select-none flex items-center justify-center">
-        <img src="/img/bg2.webp" alt="background"
-             class="w-full h-full object-cover sm:w-full sm:h-full sm:object-cover md:w-auto md:h-auto md:max-h-[250px] md:object-contain md:mx-auto">
-        <span class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 
-                     px-4 py-2 rounded-lg bg-watermeleon-extra-shadow text-white/70 font-bold text-base  animate__animated animate__fadeInUp z-40">
-          Cosméticos 
-        </span>
-      </div>
-
-      <div class="min-w-full h-full relative select-none flex items-center justify-center">
-        <img src="/img/bg3.webp" alt="background"
-             class="w-full h-full object-cover sm:w-full sm:h-full sm:object-cover md:w-auto md:h-auto md:max-h-[250px] md:object-contain md:mx-auto">
-        <span class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 
-                     px-4 py-2 rounded-lg bg-watermeleon-shadow text-watermeleon font-bold text-base  animate__animated animate__fadeInUp z-40">
-          Ofertas
-        </span>
-      </div>
-
-      <div class="min-w-full h-full relative select-none flex items-center justify-center">
-        <img src="/img/bg4.webp" alt="background"
-             class="w-full h-full object-cover sm:w-full sm:h-full sm:object-cover md:w-auto md:h-auto md:max-h-[250px] md:object-contain md:mx-auto">
-        <span class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 
-                     px-4 py-2 rounded-lg bg-transparent text-watermeleon font-bold text-base 
-                     animate__animated animate__fadeInUp z-40">
-          Productos exclusivos
-        </span>
-      </div>
-
-      <div class="min-w-full h-full relative select-none flex items-center justify-center">
-        <img src="/img/bg5.webp" alt="background"
-             class="w-full h-full object-cover sm:w-full sm:h-full sm:object-cover md:w-auto md:h-auto md:max-h-[250px] md:object-contain md:mx-auto">
-      </div>
+      {slides.map(({ src, alt, label, labelClass }) => (
+        <div class="min-w-full h-full relative select-none flex items-center justify-center">
+          <img 
+            src={src} 
+            alt={alt}
+            class="w-full h-full object-cover sm:w-full sm:h-full sm:object-cover md:w-auto md:h-auto md:max-h-[250px] md:object-contain md:mx-auto" />
+          {label && (
+            <span class={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 
+                          px-4 py-2 rounded-lg font-bold text-base animate__animated animate__fadeInUp z-40 ${labelClass}`}>
+              {label}
+            </span>
+          )}
+        </div>
+      ))}
     </div>
   </div>
 
-  <!-- Botones -->
-  <button id="btnPrev" aria-label="Anterior" class="absolute left-3 top-1/2 -translate-y-1/2 z-50 w-11 h-11 flex items-center justify-center rounded-lg bg-white/10 border border-white/10">
+  <button 
+    id="btnPrev" 
+    aria-label="Anterior" 
+    class="absolute left-3 top-1/2 -translate-y-1/2 z-50 w-11 h-11 flex items-center justify-center rounded-lg bg-white/10 border border-white/10">
     <svg 
       width="24" 
       height="24" 
@@ -61,15 +43,7 @@
     </svg>
   </button>
   <button id="btnNext" aria-label="Siguiente" class="absolute right-3 top-1/2 -translate-y-1/2 z-50 w-11 h-11 flex items-center justify-center rounded-lg bg-white/10 border border-white/10">
-    <svg 
-      width="24" 
-      height="24" 
-      viewBox="0 0 24 24" 
-      fill="none" 
-      stroke="#FF6B81" 
-      stroke-width="2" 
-      stroke-linecap="round" 
-      stroke-linejoin="round">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FF6B81" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
       <path d="M5 12l14 0" />
       <path d="M15 16l4 -4" />

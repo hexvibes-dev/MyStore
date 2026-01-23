@@ -1,9 +1,9 @@
 ---
-const { categoria = 'all', titulo = 'Productos disponibles🔶' } = Astro.props;
+const { categoria = 'nuevos', titulo = 'Productos disponibles🔶' } = Astro.props;
 ---
 
 <article class="grid place-content-center w-[100vw] h-auto p-20 bg-white/85">
-<section class="px-8 py-8 bg-white/80 min-h-screen shadow-rod rounded-2xl">
+<section class="px-8 py-8 bg-white/80 min-h-screen shadow-rod rounded-2xl min-w-[90vw] md:max-w-[85vw]">
   <h1 class="text-watermeleon text-center text-5xl font-bold max-[500px]:text-2xl mb-6">{titulo}</h1>
 
   <div id="contenedor-productos" class="flex flex-wrap gap-5 justify-center" data-categoria={categoria}></div>
