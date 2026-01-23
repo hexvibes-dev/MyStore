@@ -6,6 +6,13 @@
   --color-mirage: #0A1123;
   --color-deep-koamaru: #3A3E6D;
   --color-ship-cove: #8387C4;
+  --color-sky-blue : rgb(0, 162, 216);
+  --color-pale-sky : rgb(107, 114, 128);
+  --color-tangaroa : rgb(7, 16, 41);
+  --color-watermeleon : rgb(255, 107, 129) ;
+  --color-watermeleon-shadow : rgba(255, 107, 129,0.5) ;
+  --color-fiord : rgb(71, 85, 105);
   
+  /* Shadows; */
   --shadow-rod: 0 0 25px rgba(58, 62, 109,0.9);
 }

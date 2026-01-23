@@ -1,10 +1,10 @@
 <nav class="flex items-center justify-between gap-3 px-4 py-3 bg-white/5 border-b border-white/5 sticky top-0 z-50 backdrop-blur-md animate__animated animate__fadeInDown" role="navigation" aria-label="Navegación principal">
   
   <div class="flex items-center gap-4">
-    <div class="text-white font-extrabold text-lg tracking-wide">NeoMarket</div>
+    <div class="text-watermeleon font-extrabold text-lg tracking-wide font-sans">MarketZone</div>
 
     <!-- nav -->
-    <div class="hidden md:flex gap-4 text-gray-400 font-semibold text-sm">
+    <div class="hidden md:flex gap-4 text-watermeleon-shadow font-semibold text-sm">
       <a href="#" class="hover-text px-2 py-1 rounded">Inicio</a>
       <a href="#" class="hover-text px-2 py-1 rounded">Categorías</a>
       <a href="#" class="hover-text px-2 py-1 rounded">Ofertas</a>
@@ -21,9 +21,9 @@
     </button>
 
     <div id="menuPopup"
-      class="hidden absolute top-14 right-0 rounded-xl p-4 animate__animated"
-      style="transform-origin: top right; background-color:#0a1a3a; border:1px solid rgba(255,255,255,0.2);">
-      <ul class="flex flex-col gap-2 text-sm text-white font-semibold">
+      class="hidden absolute top-14 right-0 rounded-xl p-4 animate__animated bg-white/90"
+      style="transform-origin: top right; border:1px solid rgba(255,255,255,0.2);">
+      <ul class="flex flex-col gap-2 text-sm text-watermeleon-shadow font-semibold">
         <li><a href="#" class="hover-link">Inicio</a></li>
         <li><a href="#" class="hover-link">Categorías</a></li>
         <li><a href="#" class="hover-link">Ofertas</a></li>
@@ -36,8 +36,8 @@
 
 <style>
   .hover-text:hover {
-    color: orange;
-    background: rgba(50,30,90,0.5);
+    color: rgb(255, 107, 129);
+    background: rgba(255, 107, 129,0.5);
   }
 
   .hover-link {
@@ -46,8 +46,9 @@
     border-radius: 6px;
     transition: background 0.3s, color 0.3s;
   }
-  .hover-link:hover {
-    color: orange;
-    background: rgba(255,255,255,0.1);
+  .hover-link:hover,
+  .hover-link:active{
+    color: rgb(255, 107, 129);
+    background: rgba(255,107,129,0.5);
   }
 </style>

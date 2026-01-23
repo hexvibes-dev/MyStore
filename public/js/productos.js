@@ -117,7 +117,7 @@
 
       productos.forEach(producto => {
         const div = document.createElement('div');
-        div.className = 'producto animate__aninated animate__reveal bg-white/80 rounded-lg shadow p-4 w-72 md:w-80 lg:w-96 flex flex-col items-start transform transition duration-300 hover:scale-105 hover:shadow-lg overflow-hidden';
+        div.className = 'producto animate__aninated animate__reveal bg-white/90 rounded-lg shadow p-4 w-72 md:w-80 lg:w-96 flex flex-col items-start transform transition duration-300 hover:scale-105 hover:shadow-lg overflow-hidden';
 
         const galeriaHtml = (producto.imagenes || []).map((img, i) => {
           const src = normalizePath(img);
@@ -128,11 +128,11 @@
 
         div.innerHTML = `
           <div class="galeria flex gap-2 overflow-x-auto pb-2 -mx-1">${galeriaHtml}</div>
-          <h2 class="mt-2 text-deep-koamaru font-semibold break-words">${producto.nombre}</h2>
-          <p class="text-gray-600 text-sm max-h-32 overflow-y-auto break-words whitespace-pre-wrap">${producto.descripcion || ''}</p>
+          <h2 class="mt-2 text-watermeleon bg-watermeleon-shadow rounded-l-full rounded-r-full px-3 font-semibold break-words">${producto.nombre}</h2>
+          <p class="text-gray-600 text-sm max-h-32 overflow-y-auto break-words whitespace-pre-wrap bg-trasparent border-l border-l-watermeleon px-3">${producto.descripcion || ''}</p>
           <p class="mt-2 font-bold text-emerald-600">$${Number(producto.precio || 0).toFixed(2)}</p>
           <div class="mt-3 w-full">
-            <a class="comprar-btn inline-block bg-deep-koamaru transition-all hover-btn text-white px-4 py-2 rounded-l-full rounded-r-full font-semibold href="https://wa.me/53375206?text=Hola%2C%20quiero%20comprar%20el%20producto%20${encodeURIComponent(producto.nombre)}" target="_blank" rel="noopener noreferrer">Comprar</a>
+            <a class="comprar-btn inline-block bg-watermeleon transition-all hover-btn text-white px-4 py-2 rounded-l-full rounded-r-full font-semibold href="https://wa.me/53375206?text=Hola%2C%20quiero%20comprar%20el%20producto%20${encodeURIComponent(producto.nombre)}" target="_blank" rel="noopener noreferrer">Comprar</a>
           </div>
         `;
 
