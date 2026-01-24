@@ -1,4 +1,5 @@
 ---
+import { ViewTransitions } from 'astro:transitions';
 const {title} = Astro.props;
 import '../styles/global.css';
 import '../styles/animate.css';
@@ -13,6 +14,7 @@ import '../styles/animate.css';
 
   <body class="font-inter bg-white/80 text-watermeleon overflow-x-hidden">
     <slot />
+    <ViewTransitions />
     <script src="/js/main.js" type="module"></script>
     <script type="module" src="/js/menu.js"></script>
     <script type="module" src="/js/productos.js"></script>

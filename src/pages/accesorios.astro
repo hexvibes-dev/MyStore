@@ -1,10 +1,11 @@
 ---
 import Layout2 from '../layouts/Layout2.astro';
-import New from '../components/New/New.astro';
+import Accesorios from '../components/Ac/Accesorios.astro';
 import Topbar from '../components/Topbar.astro';
 import Header from '../components/Header.astro';
 import Navigation from '../components/Navigation.astro';
 import Footer from '../components/Footer.astro';
+import Back from '../components/Back.astro';
 
 const slides = [
   { src: "/img/new/new-bg1.webp", alt: "background", label: "New",   labelClass: "bg-watermeleon-shadow text-watermeleon" },
@@ -16,7 +17,8 @@ const slides = [
 <Layout2 title="Productos de New">
   <Topbar />
   <Header slides={slides} />
-  <Navigation />
-  <New titulo="Nuevos productos" />
+  <Navigation theme="default" />
+  <Accesorios titulo="Accesorios" />
   <Footer />
+  <Back theme="default" />
 </Layout2>

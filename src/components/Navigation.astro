@@ -1,20 +1,45 @@
-<article class="w-full h-auto grid place-content-center overflow-x-hidden mt-5">
-  <nav class="flex items-center justify-center gap-3 px-2 py-4 bg-white/10 border-b border-white/20 backdrop-blur-md">
-  <a href="/ofertas" class="nav-link text-watermeleon-shadow font-semibold text-sm px-3 py-2 rounded">Ofertas</a>
-  <a href="/new" class="nav-link text-watermeleon-shadow font-semibold text-sm px-3 py-2 rounded">Nuevos</a>
-  <a href="/belleza" class="nav-link text-watermeleon-shadow font-semibold text-sm px-3 py-2 rounded">Belleza</a>
-  <a href="#" class="nav-link text-watermeleon-shadow font-semibold text-sm px-3 py-2 rounded">Ropa</a>
-  <a href="/" class="nav-link text-watermeleon-shadow font-semibold text-sm px-3 py-2 rounded">Inicio</a>
-</nav>
+---
+const { theme = "default" } = Astro.props;
+---
 
+<article class={`w-full h-auto grid place-content-center overflow-x-hidden mt-5 ${theme}`}>
+  <nav class="flex items-center justify-center gap-1 px-2 py-4 bg-white/10 border-b border-white/20 backdrop-blur-md">
+    <a href="/ofertas" class={`nav-link font-semibold text-sm px-3 py-2 rounded ${
+      theme === "blue" ? "text-sky-blue bg-trasparent" : "text-watermeleon-shadow"
+    }`}>Ofertas</a>
+
+    <a href="/accesorios" class={`nav-link font-semibold text-sm px-3 py-2 rounded ${
+      theme === "blue" ? "text-sky-blue bg-trasparent" : "text-watermeleon-shadow"
+    }`}>Accesorios</a>
+
+    <a href="/belleza" class={`nav-link font-semibold text-sm px-3 py-2 rounded ${
+      theme === "blue" ? "text-sky-blue bg-trasparent" : "text-watermeleon-shadow"
+    }`}>Belleza</a>
+
+    <a href="/ropa" class={`nav-link font-semibold text-sm px-3 py-2 rounded ${
+      theme === "blue" ? "text-sky-blue bg-trasparent" : "text-watermeleon-shadow"
+    }`}>Ropa</a>
+
+    <a href="/" class={`nav-link font-semibold text-sm px-3 py-2 rounded ${
+      theme === "blue" ? "text-sky-blue bg-trasparent" : "text-watermeleon-shadow"
+    }`}>Inicio</a>
+  </nav>
 </article>
-<style>
+
+<style is:global>
   .nav-link {
     transition: all 0.3s ease;
   }
-  .nav-link:hover {
-    color: rgb(255, 107, 129) ; 
-    background-color: rgba(255, 107, 129,0.5) ;
+
+  .default .nav-link:hover {
+    color: rgb(255, 107, 129);
+    background-color: rgba(255, 107, 129, 0.5);
+    transform: scale(1.05);
+  }
+
+  .blue .nav-link:hover {
+    color: var(--sky-blue);
+    background-color: var(--sky-blue-shadow);
     transform: scale(1.05);
   }
 </style>

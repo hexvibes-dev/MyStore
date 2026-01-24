@@ -1,0 +1,37 @@
+---
+const { theme = "default" } = Astro.props;
+---
+
+<a 
+  href="javascript:void(0)" 
+  onclick="window.history.back()" 
+  class={`back-link animate__animated animate__fadeInUp font-semibold text-sm px-3 py-2 rounded-l-full rounded-r-full ${
+    theme === "blue" 
+      ? "text-sky-blue bg-sky-blue-shadow" 
+      : "text-watermeleon bg-watermeleon-shadow"
+  }`}
+>
+  ⬅ Volver
+</a>
+
+<style is:global>
+  .back-link {
+    position: fixed;
+    bottom: 1rem; 
+    left: 1rem; 
+    transition: all 0.3s ease;
+    z-index: 50;  
+  }
+
+  .default .back-link:hover {
+    color: var(--pink);
+    background-color: var(--pink-shadow);
+    transform: scale(1.05);
+  }
+
+  .blue .back-link:hover {
+    color: var(--sky-blue);
+    background-color: var(--sky-blue-shadow);
+    transform: scale(1.05);
+  }
+</style>

@@ -1,0 +1,120 @@
+---
+const { categoria = 'ropa', titulo = 'Productos de vestimenta 🔷', theme = 'blue' } = Astro.props;
+---
+
+<article class="grid place-content-center w-[100vw] h-auto p-20 bg-white/85">
+  <section class="px-8 py-8 bg-white/80 min-h-screen shadow-rod rounded-2xl min-w-[90vw] md:min-w-[85vw]">
+    <h1 class="text-sky-blue text-center text-5xl font-bold max-[500px]:text-2xl mb-6">{titulo}</h1>
+
+    <div 
+      id="contenedor-productos" 
+      class={`grid gap-6 justify-center md:grid-cols-3 scrollbar-${theme}`} 
+      data-categoria={categoria}>
+    </div>
+
+    <dialog id="modal" class="hidden">
+      <div id="modalOverlay" class="fixed inset-0 bg-black/50 backdrop-blur-sm"></div>
+
+      <div id="modalContent" class="relative flex flex-col h-[90vh] w-screen max-w-screen animate-scaleIn">
+        <div id="imageZone" class="flex-grow relative flex items-center justify-center overflow-hidden">
+          <img id="modal-img" src="" alt="Producto ampliado"
+               class="block object-contain mx-auto transition-all duration-300 ease-in-out" />
+        </div>
+
+        <div id="footerZone"
+             class="flex items-center justify-center gap-4 min-h-[60px] pb-[env(safe-area-inset-bottom)]">
+          <button id="prevBtn" class="w-10 h-10 rounded-full bg-sky-blue-shadow text-white hover:bg-blue-800 transition-transform duration-300">&larr;</button>
+          <button class="cerrar-btn bg-sky-blue text-white px-4 py-2 rounded-md transition-colors duration-300 hover:bg-blue-800" onclick="cerrarModal()">Cerrar</button>
+          <button id="nextBtn" class="w-10 h-10 rounded-full bg-sky-blue-shadow text-white hover:bg-blue-800 transition-transform duration-300">&rarr;</button>
+        </div>
+      </div>
+    </dialog>
+
+    <script type="module" src="/js/productos.js"></script>
+  </section>
+</article>
+
+<style is:global>
+  
+  #contenedor-productos .producto { overflow: visible !important; }
+  #contenedor-productos .galeria { -webkit-overflow-scrolling: touch; }
+  #contenedor-productos .imagen-wrapper { scroll-snap-align: start; }
+  body {
+    background: white;
+    font-family: 'Inter', sans-serif;
+    color: #444;
+  }
+
+  .categoria-ropa {
+    background: white; 
+    border-radius: 12px;
+    padding: 1rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  }
+
+  .categoria-ropa > h2 {
+    color: var(--sky-blue); 
+    background-color: var(--sky-blue-shadow);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+
+  .categoria-ropa > p {
+    color: #5c5c5c;
+    border-left: 1px solid var(--sky-blue-shadow);
+  }
+
+  .categoria-ropa > span {
+    color: var(--sky-blue);
+    background-color: var(--sky-blue-shadow);
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+  }
+
+  .categoria-ropa > div > a {
+    background-color: var(--sky-blue);
+    color: white;
+    padding: 6px 14px;
+    border-radius: 6px;
+    transition: background-color 0.3s ease;
+    font-weight: 500;
+  }
+
+  .categoria-ropa > div > a:hover {
+    background-color: blue; 
+  }
+
+  /* Scrollbar temas */
+  .scrollbar-default::-webkit-scrollbar {
+    height: 8px;
+  }
+  .scrollbar-default::-webkit-scrollbar-track {
+    background: #e5e5e5;
+  }
+  .scrollbar-default::-webkit-scrollbar-thumb {
+    background: var(--watermeleon);
+    border-radius: 4px;
+  }
+
+  .scrollbar-blue::-webkit-scrollbar {
+    height: 8px;
+  }
+  .scrollbar-blue::-webkit-scrollbar-track {
+    background: #cce4f6;
+  }
+  .scrollbar-blue::-webkit-scrollbar-thumb {
+    background: var(--sky-blue);
+    border-radius: 4px;
+  }
+
+  /* Firefox soporte */
+  .scrollbar-default {
+    scrollbar-color: var(--watermeleon) #e5e5e5;
+    scrollbar-width: thin;
+  }
+  .scrollbar-blue {
+    scrollbar-color: var(--sky-blue) #cce4f6;
+    scrollbar-width: thin;
+  }
+</style>

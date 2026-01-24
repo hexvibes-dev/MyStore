@@ -10,6 +10,7 @@
   
   /*Principal*/
   --color-sky-blue : rgb(0, 162, 216);
+  --color-sky-blue-shadow: rgba(0, 162, 216,0.3);
   --color-pale-sky : rgb(107, 114, 128);
   --color-tangaroa : rgb(7, 16, 41);
   --color-watermeleon : rgb(255, 107, 129) ;
@@ -67,6 +68,9 @@
   --baker: rgb(254, 156, 181) ;
   --pink: rgb(252, 129, 160) ;
   --pink-shadow: rgba(252,129,160,0.4);
+  --sky-blue : rgb(0, 162, 216);
+  --sky-blue-shadow: rgba(0, 162, 216,0.3);
+  --watermeleon : rgb(255, 107, 129) ;
   }    
       
   dialog[open] {

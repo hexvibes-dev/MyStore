@@ -1,6 +1,7 @@
 ---
-const { categoria = 'belleza', titulo = 'Productos disponibles🔶' } = Astro.props;
+const { categoria = 'belleza', titulo = 'Productos disponibles🔶', theme = 'default' } = Astro.props;
 ---
+
 
 <article class="grid place-content-center w-[100vw] h-auto p-12 bg-transparent mt-5">
   <section class="px-8 py-12 bg-gradient-to-br from-cherry via-pink-100 to-cherry min-h-screen rounded-xl shadow-md min-w-[95vw] md:max-w-[85vw]">
@@ -11,7 +12,7 @@ const { categoria = 'belleza', titulo = 'Productos disponibles🔶' } = Astro.pr
     <div 
       id="contenedor-productos" 
       data-categoria={categoria} 
-      class="grid gap-6 justify-center md:grid-cols-3"
+      class={`grid gap-6 justify-center md:grid-cols-3 scrollbar-${theme}`}
     ></div>
 
     <dialog id="modal" class="hidden">
@@ -56,6 +57,9 @@ const { categoria = 'belleza', titulo = 'Productos disponibles🔶' } = Astro.pr
 </article>
 
 <style is:global>
+  #contenedor-productos .producto { overflow: visible !important; }
+  #contenedor-productos .galeria { -webkit-overflow-scrolling: touch; }
+  #contenedor-productos .imagen-wrapper { scroll-snap-align: start; }
   body {
     background: var(--azalea);
     font-family: 'Inter', sans-serif;
@@ -99,5 +103,34 @@ const { categoria = 'belleza', titulo = 'Productos disponibles🔶' } = Astro.pr
 
   .categoria-belleza > div > a:hover {
     background-color: #d81b60; 
+  }
+
+  .scrollbar-default::-webkit-scrollbar {
+    height: 8px;
+  }
+  .scrollbar-default::-webkit-scrollbar-track {
+    background: #e5e5e5;
+  }
+  .scrollbar-default::-webkit-scrollbar-thumb {
+    background: var(--watermeleon);
+    border-radius: 4px;
+  }
+  .scrollbar-blue::-webkit-scrollbar {
+    height: 8px;
+  }
+  .scrollbar-blue::-webkit-scrollbar-track {
+    background: #cce4f6;
+  }
+  .scrollbar-blue::-webkit-scrollbar-thumb {
+    background: var(--sky-blue);
+    border-radius: 4px;
+  }
+  .scrollbar-default {
+    scrollbar-color: var(--watermeleon) #e5e5e5;
+    scrollbar-width: thin;
+  }
+  .scrollbar-blue {
+    scrollbar-color: var(--sky-blue) #cce4f6;
+    scrollbar-width: thin;
   }
 </style>

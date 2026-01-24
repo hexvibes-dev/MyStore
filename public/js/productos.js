@@ -14,9 +14,6 @@
     let currentImages = [];
     let currentIndex = 0;
 
-    /* -------------------------
-       Utilidades
-    ------------------------- */
     function normalizePath(src) {
       if (!src || typeof src !== 'string') return src;
       src = src.trim();
@@ -30,9 +27,6 @@
       return String(text ?? '');
     }
 
-    /* -------------------------
-       Modal / galería
-    ------------------------- */
     function centrarImagen() {
       if (!modalImg || !imageZone) return;
       const zoneHeight = imageZone.clientHeight;
@@ -127,18 +121,25 @@
       modalOverlay.addEventListener('click', cerrarModal);
     }
 
-    /* -------------------------
-       Renderizado de productos
-    ------------------------- */
+    function getScrollbarClassFromContainer(container) {
+      if (!container) return 'scrollbar-default';
+      for (let i = 0; i < container.classList.length; i++) {
+        const cls = container.classList[i];
+        if (cls && cls.startsWith('scrollbar-')) return cls;
+      }
+      return 'scrollbar-default';
+    }
+
     function renderProductos(productos) {
       const contenedor = document.getElementById('contenedor-productos');
       if (!contenedor) return;
       contenedor.innerHTML = '';
       const fragment = document.createDocumentFragment();
+      const scrollbarClass = getScrollbarClassFromContainer(contenedor);
 
       productos.forEach(producto => {
         const div = document.createElement('div');
-        let clases = 'producto animate__animated animate__reveal bg-white/90 rounded-lg shadow p-4 w-72 md:w-80 lg:w-96 flex flex-col items-start transform transition duration-300 hover:scale-105 hover:shadow-lg overflow-hidden';
+        let clases = 'producto animate__animated animate__reveal bg-white/90 rounded-lg shadow p-4 w-full md:w-80 lg:w-96 flex flex-col items-start transform transition duration-300 hover:scale-105 hover:shadow-lg overflow-hidden';
         if (producto.categoria) {
           const cats = Array.isArray(producto.categoria) ? producto.categoria : [producto.categoria];
           cats.forEach(cat => {
@@ -152,7 +153,7 @@
 
         const galeriaHtml = (producto.imagenes || []).map((img, i) => {
           const src = normalizePath(img);
-          return `<div class="imagen-wrapper flex-none min-w-[120px] h-[120px] max-h-[140px] bg-gray-100 rounded-md overflow-hidden cursor-pointer mr-2">
+          return `<div class="imagen-wrapper flex-none w-[45%] sm:min-w-[120px] h-[120px] max-h-[140px] bg-gray-100 rounded-md overflow-hidden cursor-pointer mr-2">
                     <img src="${src}" alt="${safeText(producto.nombre)}" class="w-full h-full object-cover block" loading="lazy">
                   </div>`;
         }).join('');
@@ -160,7 +161,7 @@
         const waHref = `https://wa.me/53375206?text=${waText}`;
 
         div.innerHTML = `
-          <div class="galeria flex gap-2 overflow-x-auto pb-2 -mx-1">${galeriaHtml}</div>
+          <div class="galeria flex gap-2 overflow-x-auto pb-4 px-2 w-full ${scrollbarClass}">${galeriaHtml}</div>
           <h2 class="mt-2 text-watermeleon bg-watermeleon-shadow rounded-l-full rounded-r-full px-3 font-semibold break-words">${safeText(producto.nombre)}</h2>
           <p class="text-gray-600 text-sm max-h-32 overflow-y-auto break-words whitespace-pre-wrap bg-trasparent border-l border-l-watermeleon px-3">${safeText(producto.descripcion || '')}</p>
           <span class="mt-2 font-bold text-emerald-600">$${Number(producto.precio || 0).toFixed(2)}</span>
@@ -171,7 +172,6 @@
 
         fragment.appendChild(div);
 
-        // Añadimos listeners a las miniaturas
         const wrappers = div.querySelectorAll('.imagen-wrapper');
         wrappers.forEach((wrapper, i) => {
           wrapper.addEventListener('click', () => {
@@ -184,43 +184,29 @@
       contenedor.appendChild(fragment);
     }
 
-    /* -------------------------
-       Filtrado: obtener categoría
-       - Primero: data-categoria en el contenedor
-       - Segundo: ?categoria=... en querystring
-       - Tercero: extraer último segmento de la ruta (ej. /productos/ropa)
-       - Por defecto: 'all'
-    ------------------------- */
     function getCategoriaFromPage() {
       const contenedor = document.getElementById('contenedor-productos');
       if (contenedor && contenedor.dataset && contenedor.dataset.categoria) {
         return contenedor.dataset.categoria;
       }
 
-      // Query string ?categoria=ropa
       try {
         const params = new URLSearchParams(window.location.search);
         const q = params.get('categoria');
         if (q) return q;
-      } catch (e) { /* ignore */ }
+      } catch (e) {}
 
-      // Extraer último segmento de la ruta (sin extensión .html)
       const path = window.location.pathname || '';
       const parts = path.split('/').filter(Boolean);
       if (parts.length) {
         const last = parts[parts.length - 1];
-        // si tiene extensión .html la quitamos
         const clean = last.replace(/\.html$/i, '');
-        // si la ruta es la raíz o index, devolvemos 'all'
         if (clean && !/^(index|\/)$/.test(clean)) return clean;
       }
 
       return 'all';
     }
 
-    /* -------------------------
-       Carga y filtrado de productos
-    ------------------------- */
     fetch(PRODUCTS_JSON_PATH)
       .then(res => {
         if (!res.ok) return Promise.reject(new Error('HTTP ' + res.status));
@@ -232,7 +218,6 @@
 
         if (categoria && categoria !== 'all') {
           filtrados = data.filter(p => {
-            // soporta que categoria en JSON sea string o array
             const cat = p.categoria;
             if (!cat) return false;
             if (Array.isArray(cat)) return cat.includes(categoria);
@@ -244,13 +229,11 @@
       })
       .catch(err => {
         console.error('Error al cargar productos:', err);
-        // opcional: mostrar mensaje en el contenedor
         const contenedor = document.getElementById('contenedor-productos');
         if (contenedor) contenedor.innerHTML = '<p class="text-red-500">No se pudieron cargar los productos.</p>';
       });
   }
 
-  // Inicialización cuando el DOM esté listo
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
   } else {

@@ -1,62 +1,22 @@
 [
   {
-    "nombre": "Camiseta blanca",
-    "precio": 12.99,
-    "descripcion": "Camiseta de algodón suave,\nideal para el verano.\nPerfecta para combinar con jeans o shorts.\nDiseñada para brindar comodidad durante todo el día.\nDisponible en varias tallas y colores.",
+    "nombre": "Keratina DaSem",
+    "precio": 700,
+    "descripcion": "Crema alisadora restauradora con aguacate,\nideal para nutrir y suavizar el cabello.\nFórmula enriquecida que reduce el frizz y facilita el peinado.\nAplicación fácil con textura cremosa de color verde claro.\nPerfecta para lograr un estilo liso, saludable y con brillo natural.",
     "imagenes": [
-      "/img/productos/camisa-blanca.jpg",
-      "/img/productos/prueba.jpg"
+      "/img/productos/cosmeticos/keratina.webp"
     ],
-    "categoria":[ "belleza" , "nuevos"]
+    "categoria":[ "belleza"]
   },
   {
-    "nombre": "Camiseta blanca",
-    "precio": 12.99,
-    "descripcion": "Camiseta de algodón suave,\nideal para el verano.\nPerfecta para combinar con jeans o shorts.\nDiseñada para brindar comodidad durante todo el día.\nDisponible en varias tallas y colores.",
+    "nombre": "Gafas de sol",
+    "precio": 600,
+    "descripcion": "Gafas de sol con marco cuadrado oversize,\nestilo moderno y elegante.\nLentes con degradado púrpura que ofrecen protección y estilo.\nDiseño angular con brazos curvos para mayor comodidad.\nPerfectas para complementar looks urbanos y sofisticados.",
     "imagenes": [
-      "/img/productos/camisa-blanca.jpg",
-      "/img/productos/prueba.jpg"
-    ],
-    "categoria": "belleza"
-  },
-  {
-    "nombre": "Camiseta blanca",
-    "precio": 12.99,
-    "descripcion": "Camiseta de algodón suave,\nideal para el verano.\nPerfecta para combinar con jeans o shorts.\nDiseñada para brindar comodidad durante todo el día.\nDisponible en varias tallas y colores.",
-    "imagenes": [
-      "/img/productos/camisa-blanca.jpg",
-      "/img/productos/prueba.jpg"
-    ],
-    "categoria": "belleza"
-  },
-  {
-    "nombre": "Camiseta blanca",
-    "precio": 12.99,
-    "descripcion": "Camiseta de algodón suave,\nideal para el verano.\nPerfecta para combinar con jeans o shorts.\nDiseñada para brindar comodidad durante todo el día.\nDisponible en varias tallas y colores.",
-    "imagenes": [
-      "/img/productos/camisa-blanca.jpg",
-      "/img/productos/prueba.jpg"
-    ],
-    "categoria": "belleza"
-  },
-  {
-    "nombre": "Gorra negra",
-    "precio": 8.5,
-    "descripcion": "Gorra ajustable con visera curva,\ndiseño clásico y versátil.\nFabricada con materiales resistentes.\nIdeal para protegerte del sol y complementar tu estilo urbano.\nSe adapta a diferentes tamaños de cabeza.",
-    "imagenes": [
-      "/img/productos/gorra-negra.webp",
-      "/img/productos/gorra-negra.webp"
+      "/img/productos/accesorios/gafas1.webp",
+      "/img/productos/accesorios/gafas2.webp",
+      "/img/productos/accesorios/gafas3.webp"
     ],
     "categoria": "accesorios"
-  },
-  {
-    "nombre": "Prueba",
-    "precio": 10,
-    "descripcion": "Producto de prueba para testear la galería.\nEste artículo se utiliza para verificar\nel correcto funcionamiento de la interfaz,\nlos estilos aplicados y la visualización de imágenes.\nNo está disponible para la venta.",
-    "imagenes": [
-      "/img/productos/prueba.jpg",
-      "/img/productos/prueba.jpg"
-    ],
-    "categoria": "test"
   }
 ]
