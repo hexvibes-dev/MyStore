@@ -18,8 +18,19 @@
 
 ## Vista Previa:
 
-<p style="color:gray; opacity: 0.7; text-align:center;">Próximamente.</p>
-
+  ![Mi foto](./public/img/github/image1.webp)
+  
+  
+  ![Mi foto](./public/img/github/image2.webp)
+  
+  
+  ![Mi foto](./public/img/github/image3.webp)
+  
+  
+  ![Mi foto](./public/img/github/image4.webp)
+  
+  
+  ![Mi foto](./public/img/github/image5.webp)
 ---
 
 ## Licencia :
@@ -28,7 +39,7 @@ Este proyecto está licenciado bajo **Creative Commons BY-NC-ND 4.0**.
 Puedes compartir este proyecto con atribución, pero no puedes usarlo con fines comerciales ni modificarlo para redistribuirlo.
 
 
-## 👤 Autor: **Emilio**
+## 👤 Autor: **Emilio.dev**
 📩 Contacto: [Email](mailto:kei.hexcode@gmail.com)
 
 </div>
