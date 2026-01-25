@@ -153,7 +153,7 @@
 
         const galeriaHtml = (producto.imagenes || []).map((img, i) => {
           const src = normalizePath(img);
-          return `<div class="imagen-wrapper flex-none w-[45%] sm:min-w-[120px] h-[120px] max-h-[140px] bg-gray-100 rounded-md overflow-hidden cursor-pointer mr-2">
+          return `<div class="imagen-wrapper flex-none w-[45%] sm:min-w-[120px] h-[120px] max-h-[140px] rounded-md overflow-hidden cursor-pointer mr-2">
                     <img src="${src}" alt="${safeText(producto.nombre)}" class="w-auto h-full object-cover block" loading="lazy">
                   </div>`;
         }).join('');
