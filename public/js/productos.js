@@ -139,7 +139,7 @@
 
       productos.forEach(producto => {
         const div = document.createElement('div');
-        let clases = 'producto animate__animated animate__reveal bg-white/90 rounded-lg shadow p-4 w-full md:w-80 lg:w-96 flex flex-col items-start transform transition duration-300 hover:scale-105 hover:shadow-lg overflow-hidden';
+        let clases = 'producto bg-white/90 rounded-lg shadow p-4 w-full md:w-80 lg:w-96 flex flex-col items-start transform transition duration-300 hover:scale-105 hover:shadow-lg overflow-hidden';
         if (producto.categoria) {
           const cats = Array.isArray(producto.categoria) ? producto.categoria : [producto.categoria];
           cats.forEach(cat => {
@@ -154,7 +154,7 @@
         const galeriaHtml = (producto.imagenes || []).map((img, i) => {
           const src = normalizePath(img);
           return `<div class="imagen-wrapper flex-none w-[45%] sm:min-w-[120px] h-[120px] max-h-[140px] bg-gray-100 rounded-md overflow-hidden cursor-pointer mr-2">
-                    <img src="${src}" alt="${safeText(producto.nombre)}" class="w-full h-full object-cover block" loading="lazy">
+                    <img src="${src}" alt="${safeText(producto.nombre)}" class="w-auto h-full object-cover block" loading="lazy">
                   </div>`;
         }).join('');
         const waText = encodeURIComponent(`Hola, quiero comprar el producto ${safeText(producto.nombre)}`);
