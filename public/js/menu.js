@@ -17,9 +17,16 @@ export function initMenuPopup() {
     popup.classList.remove('animate__zoomIn');
     popup.classList.add('animate__zoomOut');
     popup.setAttribute('aria-hidden', 'true');
-    popup.addEventListener('animationend', () => {
-      popup.classList.add('hidden');
-    }, { once: true });
+
+    // Listener fijo para evitar acumulación
+    const handleAnimationEnd = () => {
+      if (!isOpen) {
+        popup.classList.add('hidden');
+      }
+      popup.removeEventListener('animationend', handleAnimationEnd);
+    };
+
+    popup.addEventListener('animationend', handleAnimationEnd);
     isOpen = false;
   }
 
