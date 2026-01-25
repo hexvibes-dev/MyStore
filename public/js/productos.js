@@ -1,7 +1,11 @@
 (function () {
   const PRODUCTS_JSON_PATH = '/productos/productos.json';
+  let alreadyInit = false;
 
   function init() {
+    if (alreadyInit) return;
+    alreadyInit = true;
+
     const modal = document.getElementById('modal');
     const modalImg = document.getElementById('modal-img');
     const modalContent = document.getElementById('modalContent');
@@ -239,4 +243,9 @@
   } else {
     init();
   }
+
+  document.addEventListener('astro:page-load', () => {
+    alreadyInit = false;
+    init();
+  });
 })();
